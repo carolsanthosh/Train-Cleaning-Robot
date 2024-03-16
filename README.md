@@ -40,5 +40,5 @@ or
 search in browser,
 
     http://localhost:5000
-Depending on the device you use, change the url to **http://<ipaddress>:5000**. the **<ipaddress>** should be the host ip address of the machine running the rospackage 
+Depending on the device you use, change the url to **http://ipaddress:5000**. the **ipaddress** should be the host ip address of the machine running the rospackage 
 to view it in any devices connected in the same network
