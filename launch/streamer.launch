@@ -1,0 +1,5 @@
+<launch>
+  <node name="usb_camera_publisher" pkg="camera_streamer" type="camera_publisher.py" output="screen"/>
+  <node name="image_streamer" pkg="camera_streamer" type="camera_streamer.py" output="screen"/>
+  <node name="bounding_box_extractor" pkg="camera_streamer" type="object_detector.py" output="screen"/>
+</launch>
