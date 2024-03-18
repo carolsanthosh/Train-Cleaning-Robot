@@ -3,6 +3,7 @@ ROS package to stream camera image to a web interface with object detection
 
 ## Summary
 This package uses three rospy pakcages.
+
 -camera_publisher.py : gets camera data and publishes it to **/usb_camera/image/compresses** rostopic 
 
 -camera_streamer.py :  subscribes to **usb_camera/image/compresses** and **/bounding_box** rostopics and streams the output image to web interface
