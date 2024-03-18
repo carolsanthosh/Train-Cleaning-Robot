@@ -1,5 +1,5 @@
 # Camera Streamer
-ROS package to stream camera image to a web interface with object detection
+ROS package to stream camera image to a web interface with object detection on RPi-2
 
 ## Summary
 This package uses three rospy pakcages.
