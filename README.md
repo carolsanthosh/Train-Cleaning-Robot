@@ -20,7 +20,7 @@ ROS workspace
     cd ~/catkin_ws/src
 if you do not have a workspace, create one.
 
-    mkdir -p /catkin_ws/src
+    mkdir -p catkin_ws/src
     cd ~/catkin_ws/src
 You can change the workspace name as you desire
 
