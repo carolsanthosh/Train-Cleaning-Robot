@@ -2,7 +2,11 @@
   <arg name="lbl_path" default="$(find camera_streamer)/models/labelmap.txt" />
   <arg name="model_path" default="$(find camera_streamer)/models/detect_quant.tflite" />
 
-  <node name="usb_camera_publisher" pkg="camera_streamer" type="camera_publisher.py" output="screen"/>
+  <arg name="camera_index" default="1" />
+
+  <node name="usb_camera_publisher" pkg="camera_streamer" type="camera_publisher.py" output="screen">
+      <param name="camera_index" value="$(arg camera_index)" />
+  </node>
 
   <node name="image_streamer" pkg="camera_streamer" type="camera_streamer.py" output="screen"/>
 
