@@ -7,8 +7,8 @@ from sensor_msgs.msg import CompressedImage
 def usb_camera_publisher():
     rospy.init_node('usb_camera_publisher', anonymous=True)
     image_pub = rospy.Publisher('usb_camera/image/compressed', CompressedImage, queue_size=1)
-    cap = cv2.VideoCapture(1)  # Change the index if necessary
-
+    cam_index = rospy.get_param("~camera_index")
+    cap = cv2.VideoCapture(cam_index)  # Change the index if necessary
     rate = rospy.Rate(30)  # Adjust the rate as needed
 
     while not rospy.is_shutdown():
