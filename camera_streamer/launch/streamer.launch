@@ -1,0 +1,14 @@
+<launch>
+  <arg name="lbl_path" default="$(find camera_streamer)/models/labelmap.txt" />
+  <arg name="model_path" default="$(find camera_streamer)/models/detect_quant.tflite" />
+
+  <node name="usb_camera_publisher" pkg="camera_streamer" type="camera_publisher.py" output="screen"/>
+
+  <node name="image_streamer" pkg="camera_streamer" type="camera_streamer.py" output="screen"/>
+
+  <node name="bounding_box_extractor" pkg="camera_streamer" type="object_detector.py" output="screen">
+      <param name="lbl_path" value="$(arg lbl_path)" />
+      <param name="model_path" value="$(arg model_path)" />
+  </node>
+
+</launch>
