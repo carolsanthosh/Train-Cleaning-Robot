@@ -27,7 +27,7 @@ You can change the workspace name as you desire
 Git Clone
 
 
-    git clone https://github.com/carolsanthosh/Train-Cleaning-Robot.git
+    git clone https://github.com/carolsanthosh/train-cleaning-robot.git
 
 catkin make
 
@@ -37,7 +37,7 @@ catkin make
     
 After this try running the ROS package using roslaunch command to have all three python files
 
-    roslaunch Train-Cleaning-Robot streamer.launch
+    roslaunch camera_streamer streamer.launch
 
 Now you should see the web interface ip address displayed on the terminal 
 or
