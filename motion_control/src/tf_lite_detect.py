@@ -5,7 +5,7 @@ import sys
 import glob
 import random
 import importlib.util
-import tflite_runtime.interpreter import Interpreter
+from tflite_runtime.interpreter import Interpreter
 
 lblpath = 'custom_model_lite/labelmap.txt'
 modelpath = 'custom_model_lite/detect.tflite'
