@@ -14,7 +14,7 @@ source = 0
 #cap = cv2.VideoCapture("http://192.168.103.139:8080/stream?topic=/camera/image_raw&type=ros_compressed")
 with open(lblpath, 'r') as f:
     labels = [line.strip() for line in f.readlines()]
-interpreter = tf.lite.Interpreter(model_path=modelpath)
+interpreter = Interpreter(model_path=modelpath)
 interpreter.allocate_tensors()
 
 # Get model details
