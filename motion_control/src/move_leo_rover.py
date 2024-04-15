@@ -27,6 +27,7 @@ speed = Twist()
 
 r = rospy.Rate(30)
 cap = cv2.VideoCapture(0)
+x_center = cap.get(cv2.CAP_PROP_FRAME_WIDTH) // 2  # Getting the frame center
 while not rospy.is_shutdown():
         ret, image = cap.read()
         frame, score = detect(image)
@@ -49,15 +50,32 @@ while not rospy.is_shutdown():
         msg.format = 'jpeg'
         msg.data = jpeg_image.tobytes()
         image_pub.publish(msg)
-
+	
+        # Assume first detection is the target
+        object_name, object_score, xmin, ymin, xmax, ymax, center_b = detections[0]
+        xb_center, yb_center = center_b #the cneter of bounding box
 
         if score == True:
-		
+		if xb_center < x_center:
+		 # Turn left
+            	speed.linear.x = 0.0
+            	speed.angular.z = 0.7
+            	print("Turning left")
+		elif xb_center > x_center:
+		 # Turn right
+            	speed.linear.x = 0.0
+            	speed.angular.z = -0.7
+            	print("Turning right")
+		else:
+		# Go straight
                 speed.linear.x = 0.0
                 speed.angular.z = 0.0
                 speed.linear.x = -0.2
                 speed.angular.z = 0.0
+		print("Going straight")
+
                 pi_pwm.ChangeDutyCycle(50)
+
         # Exit on 'q' key press
 	if cv2.waitKey(1) == ord('q'):
                 break
