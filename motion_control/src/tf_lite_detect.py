@@ -23,6 +23,10 @@ output_details = interpreter.get_output_details()
 height = input_details[0]['shape'][1]
 width = input_details[0]['shape'][2]
 
+center_x = width // 2
+center_y = height // 2
+center = (center_x, center_y)
+
 float_input = (input_details[0]['dtype'] == np.float32)
 
 input_mean = 127.5
@@ -31,7 +35,7 @@ input_std = 127.5
 def detect(image):
 	image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 	imH, imW, _ = image.shape
-	image_resized = cv2.resize(image_rgb, (width, height))
+	image_resized = cv2.resize(image_rgb, (width, height, center))
 	input_data = np.expand_dims(image_resized, axis=0)
 
 
@@ -54,6 +58,10 @@ def detect(image):
 		    xmin = int(max(1, (boxes[i][1] * imW)))
 		    ymax = int(min(imH, (boxes[i][2] * imH)))
 		    xmax = int(min(imW, (boxes[i][3] * imW)))
+		    # Calculate the center of the bounding box		          
+            	    xb_center = (xmin + xmax) // 2
+            	    yb_center = (ymin + ymax) // 2
+            	    center_b = (xb_center, yb_center)
 
 		    cv2.rectangle(image, (xmin, ymin), (xmax, ymax), (10, 255, 0), 2)
 
@@ -68,5 +76,5 @@ def detect(image):
 		    cv2.putText(image, label, (xmin, label_ymin - 7), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0),
 				2)  # Draw label text
 
-		    detections.append([object_name, scores[i], xmin, ymin, xmax, ymax])
+		    detections.append([object_name, scores[i], xmin, ymin, xmax, ymax, center_b])
 	return image, detected
