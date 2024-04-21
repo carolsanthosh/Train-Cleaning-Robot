@@ -10,6 +10,7 @@ def usb_camera_publisher():
     cam_index = rospy.get_param("~camera_index")
     cap = cv2.VideoCapture(cam_index)  # Change the index if necessary
 
+
     rate = rospy.Rate(30)  # Adjust the rate as needed
 
     while not rospy.is_shutdown():
