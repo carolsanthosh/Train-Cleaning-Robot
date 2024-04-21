@@ -3,15 +3,18 @@ ROS package to stream camera image to a web interface with object detection on R
 
 ## Summary
 This package uses three rospy pakcages.
-
+ROS Pack : camera_streamer:
 -camera_publisher.py : gets camera data and publishes it to **/usb_camera/image/compresses** rostopic 
 
 -camera_streamer.py :  subscribes to **usb_camera/image/compresses** and **/bounding_box** rostopics and streams the output image to web interface
 
 -object_detector.py : subscribes to **usb_camera/image/compresses** to perform object detection using tflite runtime library and publishes the detected bounding boxes to  **/bounding_box**
 
+ROS Pack motion_control:
 
-    
+-move_leo_rover.py : Navigates the Leo Rover towards the detected waste using the TFLite model.
+
+Note : Run both the ROS packages for the complete implementation
 ## How to run
 
 ### Get ROS Package
